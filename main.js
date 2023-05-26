@@ -4,7 +4,7 @@ const gridHtml = (data) => {
   let element = document.querySelector(".movie-wrapper");
   let template = `
   <div class='movie-card' onclick="onClickMovieCard(${data.id})">
-    <img src="https://image.tmdb.org/t/p/w500/${data.backdrop_path}" alt="The Godfather">
+    <img src="https://image.tmdb.org/t/p/w500/${data.backdrop_path}" alt="">
     <h3>${data.name}</h3>
     <p>${data.overview}</p>
     <p>Rating: 8.7</p>
@@ -22,7 +22,7 @@ const onClickSearchBtn = async (event) => {
   let input = document.getElementById("search-input").value;
   let element = document.querySelector(".movie-wrapper");
   while (element.firstChild) {
-    await element.removeChild(element.firstChild);
+    element.removeChild(element.firstChild);
   }
   await movieData.map((data) => {
     if (data.name.includes(input)) {

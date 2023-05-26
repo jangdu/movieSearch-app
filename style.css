@@ -2,11 +2,27 @@ body {
   background: rgb(144, 144, 248);
 }
 
-h1 {
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.5s;
+  border-radius: 2rem;
+  font-size: large;
+  padding: 0.5rem;
+  margin-left: 1rem;
+}
+
+button:hover {
+  background: #5470ff;
+}
+
+.title {
   background-color: #f7ff9e;
   text-align: center;
   border-radius: 300px;
   padding: 3rem;
+  box-shadow: 10px 5px 5px gray;
 }
 
 .movie-wrapper {
@@ -19,10 +35,14 @@ h1 {
 .movie-card {
   padding: 20px;
   width: 300px;
+  transition: scale 0.5s;
+
   justify-self: center;
   background-color: rgb(255, 140, 0);
   cursor: pointer;
   user-select: none;
+  border-radius: 1rem;
+  box-shadow: 10px 5px 5px gray;
 }
 
 .movie-card:hover {
@@ -32,24 +52,19 @@ h1 {
 
 .movie-card img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 .search-form {
-  width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid black;
+  align-items: center;
+  margin: 3rem auto;
 }
 
-input {
+#search-input {
   margin-left: 20px;
   min-width: 20rem;
-}
-
-button {
-  margin-left: 10px;
-  padding: 5px;
+  padding: 0.5rem 1rem;
+  font-size: large;
 }
