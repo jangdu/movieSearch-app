@@ -25,9 +25,7 @@ const onClickSearchBtn = async (event) => {
     element.removeChild(element.firstChild);
   }
   await movieData.map((data) => {
-    if (data.name.includes(input)) {
-      gridHtml(data);
-    }
+    data.name.includes(input) ? gridHtml(data) : "";
   });
 };
 
