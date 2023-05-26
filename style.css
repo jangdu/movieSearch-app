@@ -2,32 +2,32 @@ body {
   background: rgb(144, 144, 248);
 }
 
-header {
+h1 {
   background-color: #f7ff9e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 0;
+  text-align: center;
+  border-radius: 300px;
+  padding: 3rem;
 }
 
 .movie-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-gap: 3rem;
   justify-content: center;
-  /* grid-auto-rows: minmax(100px, auto); */
 }
 
 .movie-card {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
-  margin: 20px;
   padding: 20px;
   width: 300px;
   justify-self: center;
-  background-color: bisque;
-  border-radius: 10px;
+  background-color: rgb(255, 140, 0);
   cursor: pointer;
   user-select: none;
+}
+
+.movie-card:hover {
+  background-color: rgb(230, 140, 0);
+  scale: 105%;
 }
 
 .movie-card img {
@@ -35,7 +35,7 @@ header {
   border-radius: 10px;
 }
 
-.search {
+.search-form {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -47,7 +47,6 @@ header {
 input {
   margin-left: 20px;
   min-width: 20rem;
-  padding: 5px 10px;
 }
 
 button {

@@ -1,10 +1,9 @@
 let movieData = {};
 
-// gridhtml function
 const gridHtml = (data) => {
   let element = document.querySelector(".movie-wrapper");
   let template = `
-  <div class='movie-card'>
+  <div class='movie-card' onclick="onClickMovieCard(${data.id})">
     <img src="https://image.tmdb.org/t/p/w500/${data.backdrop_path}" alt="The Godfather">
     <h3>${data.name}</h3>
     <p>${data.overview}</p>
@@ -14,19 +13,22 @@ const gridHtml = (data) => {
   element.insertAdjacentHTML("beforeend", template);
 };
 
-const handleSearch = async (event) => {
+const onClickMovieCard = (id) => {
+  alert(`영화 id : ${id}`);
+};
+
+const onClickSearchBtn = async (event) => {
   event.preventDefault();
   let input = document.getElementById("search-input").value;
   let element = document.querySelector(".movie-wrapper");
   while (element.firstChild) {
-    element.removeChild(element.firstChild);
+    await element.removeChild(element.firstChild);
   }
   await movieData.map((data) => {
     if (data.name.includes(input)) {
       gridHtml(data);
     }
   });
-  console.log();
 };
 
 window.onload = () => {

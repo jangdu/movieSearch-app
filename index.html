@@ -5,17 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>내배캠 최고 평점 영화</title>
+    <title>movie-app</title>
   </head>
 
   <body>
-    <header>
-      <h1>내배캠 최고 평점 영화 콜렉션</h1>
-    </header>
-    <form class="search" onsubmit="handleSearch(event)">
+    <h1>내배캠 최고 평점 영화</h1>
+    <form class="search-form" onsubmit="onClickSearchBtn(event)">
       <h3>영화 검색</h3>
-      <input type="text" id="search-input" placeholder="영화 제목을 검색해 보세요" />
-      <button type="submit" id="search-btn" onclick="">검색</button>
+      <input type="text" id="search-input" placeholder="title" />
+      <button type="submit" id="search-btn">search</button>
     </form>
     <div class="movie-wrapper"></div>
     <script src="main.js"></script>
