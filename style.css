@@ -1,17 +1,21 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  background: url("../assets/bg.png") center/cover no-repeat;
+  background: rgb(144, 144, 248);
 }
 
-.card-list {
+header {
+  background-color: #f7ff9e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.movie-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
   justify-content: center;
+  /* grid-auto-rows: minmax(100px, auto); */
 }
 
 .movie-card {
@@ -29,14 +33,6 @@ body {
 .movie-card img {
   width: 100%;
   border-radius: 10px;
-}
-
-header {
-  background-color: #ffe194;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 0;
 }
 
 .search {
