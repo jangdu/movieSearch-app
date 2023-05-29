@@ -12,6 +12,7 @@ const getData = async (currentPage) => {
       Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZDg5NmYxODFiNjY0ZTNjNzFlMDA5NmExMTFhNTJmMiIsInN1YiI6IjY0NzA4ZGNiNTQzN2Y1MDE0NzVmMDc4NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JriOHXrDYyiinhY94sBiFB5x5nHiGvzgXu8MVTUaWsQ",
     },
   };
+
   const response = await fetch(url, options);
   if (response.status == 200) {
     _scrollchk = true;
@@ -62,9 +63,7 @@ const onClickSearchBtn = async (event) => {
 
 const io = new IntersectionObserver(async (entries, observer) => {
   await entries.forEach(async (entry) => {
-    if (!entry.isIntersecting) return;
-    if (_scrollchk) return;
-    if (searching) return;
+    if (!entry.isIntersecting || _scrollchk || searching) return;
     observer.observe(document.getElementById("sentinel"));
     currentPage += 1;
     await getData(currentPage);
@@ -72,6 +71,8 @@ const io = new IntersectionObserver(async (entries, observer) => {
 });
 
 window.onload = async () => {
+  currentPage = 1;
+
   await getData(currentPage);
 
   await io.observe(document.getElementById("sentinel"));
