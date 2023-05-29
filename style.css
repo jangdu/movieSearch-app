@@ -53,13 +53,13 @@ button:hover {
   align-items: center;
 }
 
-.movie-card > span {
-  height: 150px;
-  overflow: scroll;
+.scroll::-webkit-scrollbar {
+  display: none;
 }
-.movie-card > h3 {
-  width: 220px;
-  text-overflow: hidden;
+
+.scroll {
+  height: 150px;
+  overflow-y: scroll;
 }
 
 .movie-card:hover {
@@ -84,6 +84,16 @@ button:hover {
   min-width: 20rem;
   padding: 0.5rem 1rem;
   font-size: large;
+}
+
+.button-wrap {
+  width: 200px;
+  margin: 32px auto;
+  height: 40px;
+  padding-top: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
 @media (max-width: 1024px) {
