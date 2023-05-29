@@ -1,12 +1,26 @@
 let movieData = {};
 
-const gridHtml = (data) => {
+const getData = async (url, options) => {
+  const response = await fetch(url, options);
+  if (response.status == 200) {
+    data = await response.json();
+    movieData = await data.results;
+    movieData.forEach((element) => {
+      gridHtml(element);
+    });
+    return movieData;
+  } else {
+    throw new HttpError(response);
+  }
+};
+
+const gridHtml = ({ id, backdrop_path, name, overview } = data) => {
   let element = document.querySelector(".movie-wrapper");
   let template = `
-  <div class='movie-card' onclick="onClickMovieCard(${data.id})">
-    <img src="https://image.tmdb.org/t/p/w500/${data.backdrop_path}" alt="">
-    <h3>${data.name}</h3>
-    <p>${data.overview}</p>
+  <div class='movie-card' onclick="onClickMovieCard(${id})">
+    <img src="https://image.tmdb.org/t/p/w500/${backdrop_path}" alt="">
+    <h3>${name}</h3>
+    <span>${overview}</span>
     <p>Rating: 8.7</p>
   </div>
   `;
@@ -29,8 +43,8 @@ const onClickSearchBtn = async (event) => {
   });
 };
 
-window.onload = () => {
-  const url = "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1";
+window.onload = async () => {
+  const url = "https://api.themoviedb.org/3/tv/top_rated?language=ko-US&page=1";
   const options = {
     method: "GET",
     headers: {
@@ -39,13 +53,5 @@ window.onload = () => {
     },
   };
 
-  fetch(url, options)
-    .then((res) => res.json())
-    .then((json) => {
-      movieData = json.results;
-      movieData.forEach((element) => {
-        gridHtml(element);
-      });
-    })
-    .catch((err) => console.error("error:" + err));
+  await getData(url, options);
 };

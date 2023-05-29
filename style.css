@@ -1,5 +1,10 @@
 body {
   background: rgb(144, 144, 248);
+  min-width: 420px;
+}
+
+* {
+  display: block;
 }
 
 button {
@@ -27,14 +32,16 @@ button:hover {
 
 .movie-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 3rem;
+  grid-template-columns: repeat(4, 1fr);
+
+  grid-gap: 1rem;
   justify-content: center;
 }
 
 .movie-card {
   padding: 20px;
-  width: 300px;
+  width: 250px;
+  height: 400px;
   transition: scale 0.5s;
 
   justify-self: center;
@@ -43,11 +50,21 @@ button:hover {
   user-select: none;
   border-radius: 1rem;
   box-shadow: 10px 5px 5px gray;
+  align-items: center;
+}
+
+.movie-card > span {
+  height: 150px;
+  overflow: scroll;
+}
+.movie-card > h3 {
+  width: 220px;
+  text-overflow: hidden;
 }
 
 .movie-card:hover {
   background-color: rgb(230, 140, 0);
-  scale: 105%;
+  scale: 103%;
 }
 
 .movie-card img {
@@ -67,4 +84,18 @@ button:hover {
   min-width: 20rem;
   padding: 0.5rem 1rem;
   font-size: large;
+}
+
+@media (max-width: 1024px) {
+  .movie-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #search-input {
+    min-width: 12rem;
+  }
+}
+@media (max-width: 768px) {
+  .movie-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
