@@ -4,7 +4,7 @@ let searching = false;
 let _scrollchk = false;
 
 const getData = async (currentPage) => {
-  const url = `https://api.themoviedb.org/3/tv/top_rated?language=ko-US&page=${currentPage}`;
+  const url = `https://api.themoviedb.org/3/tv/top_rated?language=ko-KR&include_video=true&page=${currentPage}`;
   const options = {
     method: "GET",
     headers: {
@@ -18,7 +18,8 @@ const getData = async (currentPage) => {
     _scrollchk = true;
     data = await response.json();
     const temp = await data.results;
-    temp.forEach((element) => {
+    console.log(temp);
+    await temp.forEach((element) => {
       movieData.push(element);
       gridHtml(element);
     });
@@ -29,16 +30,16 @@ const getData = async (currentPage) => {
   }
 };
 
-const gridHtml = ({ id, backdrop_path, name, overview } = data) => {
+const gridHtml = ({ id, poster_path, name, vote_average, overview } = data) => {
   let element = document.querySelector(".movie-wrapper");
   let template = `
   <div class='movie-card' onclick="onClickMovieCard(${id})">
-    <img src="https://image.tmdb.org/t/p/w500/${backdrop_path}" alt="">
-    <h3>${name}</h3>
-    <div class='scroll'>
-      <span>${overview}</span>
+    <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="">
+    <div class='card-dedail-wrap'>
+      <h3>${name}</h3>
+      <span class='scroll'>${overview}</span>
+      <p>Rating: ${vote_average}</p>
     </div>
-    <p>Rating: 8.7</p>
   </div>
   `;
   element.insertAdjacentHTML("beforeend", template);
@@ -64,7 +65,7 @@ const onClickSearchBtn = async (event) => {
 const io = new IntersectionObserver(async (entries, observer) => {
   await entries.forEach(async (entry) => {
     if (!entry.isIntersecting || _scrollchk || searching) return;
-    observer.observe(document.getElementById("sentinel"));
+    observer.observe(document.getElementById("loading-ui"));
     currentPage += 1;
     await getData(currentPage);
   });
@@ -75,5 +76,5 @@ window.onload = async () => {
 
   await getData(currentPage);
 
-  await io.observe(document.getElementById("sentinel"));
+  await io.observe(document.getElementById("loading-ui"));
 };
